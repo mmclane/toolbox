@@ -6,3 +6,13 @@ crash.log
 
 # For built boxes
 *.box
+*.vdi
+output*/**
+
+customizations.sh
+.vagrant/
+synced/
+.history
+.history/**
+debug.log
+toolbox_image/iso/

@@ -6,8 +6,6 @@ Vagrant is software that is used to manage a development environment. Through th
 
 Using VirtualBox and Vagrant, you can easily setup and manage our development environment.
 
-This was orginally something I developed while working at LLamasoft and was kinda focused on their environment and use case.  After leaving the company I still wanted to have a toolbox for myself, so I have moved things around, commented things out, and started to make changes.  This means that there is very likely out of date code and documentation.  I leave you to sort through it.
-
 ## Setup steps
 
 See SETUP.md
@@ -52,7 +50,3 @@ Some good things to link to in this share might include:
     * i.e. mklink /J repos "c:\Users\matt.mclane\repos"
   * File: mklink /H LinkName TargetPath
     * i.e. mklink /D "c:\Users\matt.mclane\repos\llamasoft\toolbox\share\test.cmd" "c:\Users\matt.mclane\repos\kube.cmd"
-
-## Ideas for future improvements
-
-* When creating the image in toolbox_iamges directory, I should have a single packer.json file instead of two.  When "make build-cloud" is run it should actually run a script of some sort that reads in packer.json and updates/inserts the post provisioner stuff to upload the image.  Then it actually runs packer using a temp json file that it deletes afterward.

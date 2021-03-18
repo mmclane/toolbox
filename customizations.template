@@ -1,0 +1,37 @@
+##############################
+# Fill in these values
+YOUR_EMAIL=""
+YOUR_NAME=""
+GITHUB_USER=""
+GITHUB_TOKEN=""
+
+# VAULT_USER="" # ldap user from llamadev
+# VAULT_PASSWRD=""
+
+# PACKER_AWS_SSH_KEY_ID=""
+# PACKER_SSH_KEY_FILE_NAME="" # This is the name of the file in your local PACKER_SSH_KEY_PATH env variable
+
+# KNIFE_USER="" # Chef username (i.e. mmclane)
+# KNIFE_COOKBOOK_PATH="" # Path in the toolbox where your cookbooks will be (i.e '/host/repos/llamasoft/chef-repo/cookbooks')
+# KNIFE_EDITOR="nano"
+##############################
+
+echo "export EMAILADDR=${YOUR_EMAIL}" > ~/.zsh_customizations
+echo "export NAME=\"${YOUR_NAME}\"" >> ~/.zsh_customizations
+echo "export GITHUB_USER=${GITHUB_USER}" >> ~/.zsh_customizations
+echo "export GITHUB_TOKEN=${GITHUB_TOKEN}" >> ~/.zsh_customizations
+# echo "export VAULT_USER=${VAULT_USER}" >> ~/.zsh_customizations
+# echo "export VAULT_PASSWRD=${VAULT_PASSWRD}" >> ~/.zsh_customizations
+
+# Knife (chef) Env Vars
+# echo "# Knife Env Vars" >> ~/.zsh_customizations
+# echo "export KNUSER=${KNIFE_USER}" >> ~/.zsh_customizations
+# echo "export KNCKBPATH=${KNIFE_COOKBOOK_PATH}" >> ~/.zsh_customizations
+# echo "export KNEDITOR=${KNIFE_EDITOR}" >> ~/.zsh_customizations
+
+# Packer Env Vars
+# echo "# Packer Env Vars" >> ~/.zsh_customizations
+# echo "export PACKER_AWS_SSH_KEY_ID=${PACKER_AWS_SSH_KEY_ID}" >> ~/.zsh_customizations
+# echo "export PACKER_SSH_KEY_PATH=~/.aws/${PACKER_SSH_KEY_FILE_NAME}" >> ~/.zsh_customizations
+
+# Your own custom things
