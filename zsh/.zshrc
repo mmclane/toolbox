@@ -45,6 +45,7 @@ export LS_COLORS="$LS_COLORS:ow=1;34:tw=1;34:"
 eval "$(hub alias -s)"
 alias tf=terraform
 alias tg=terragrunt
+alias dk='docker'
 alias kc='kubectl'
 # alias kccdn='kubectl config set-context $(kubectl config current-context) --namespace'
 alias hs='history | grep'

@@ -10,6 +10,7 @@ validate-test:
 	packer validate packer-testing.json
 
 build:
+	del packerlog.txt
 	packer build --force packer.json
 
 build-cloud:

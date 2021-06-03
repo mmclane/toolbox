@@ -56,3 +56,5 @@ Some good things to link to in this share might include:
 ## Ideas for future improvements
 
 * When creating the image in toolbox_iamges directory, I should have a single packer.json file instead of two.  When "make build-cloud" is run it should actually run a script of some sort that reads in packer.json and updates/inserts the post provisioner stuff to upload the image.  Then it actually runs packer using a temp json file that it deletes afterward.
+
+* Should I convert this to use CentOS instead of Ubuntu?  Also, should I update to Ubuntu 20?

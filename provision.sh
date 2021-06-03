@@ -10,7 +10,7 @@ git config --global core.autocrlf true
 # File Formats
 echo "Fixing file formats"
 dos2unix $(find ~ -maxdepth 1 -type f) 2>/dev/null
-dos2unix $(find ~/.aws -maxdepth 1 -type f) 2>/dev/null
+dos2unix $(find ~/.kube -maxdepth 1 -type f) 2>/dev/null
 dos2unix $(find ~/.ssh -maxdepth 1 -type f) 2>/dev/null
 
 # Enable direnv
