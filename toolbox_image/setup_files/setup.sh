@@ -2,7 +2,7 @@ echo "workin"
 cd /tmp
 
 KUBE_VERSION="v1.18.0"
-TERRAFORM_VERSION="0.13.3"
+TERRAFORM_VERSION="1.0.4"
 # TERRAGRUNT_VERSION="v0.25.2"
 # PACKER_VERSION="1.6.0"
 # CHEFDK_VERSION="2.4.17"
@@ -33,6 +33,8 @@ sudo ln -s /usr/bin/python3 /usr/local/bin/python
 sudo ln -s /usr/bin/python3 /usr/local/bin/python3
 sudo ln -s /usr/bin/pip3 /usr/bin/pip
 pip install --upgrade pip
+
+pip install pre-commit
 
 # echo "### Powershell"
 # sudo apt-get install -y epel-release

@@ -99,7 +99,7 @@
             {
                 "type": "vagrant",
                 "compression_level": "8",
-                "output": "output-vagrant/m3toolbox-{{.Provider}}-ubuntu{{user `mirror_directory`}}.v3.box"
+                "output": "output-vagrant/m3toolbox-{{.Provider}}-ubuntu{{user `mirror_directory`}}.v6.box"
             }
         ]
     ]

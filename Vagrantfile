@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
   #config.vm.box = "mclanem/m3toolbox"
   #config.vm.box_version = "0"
-  config.vm.box = ".\\toolbox_image\\output-vagrant\\m3toolbox-virtualbox-ubuntu18.04.4.v3.box" 
+  config.vm.box = ".\\toolbox_image\\output-vagrant\\m3toolbox-virtualbox-ubuntu18.04.4.v6.box" 
  
   config.vm.network "private_network", type: "dhcp"
   config.vm.hostname = "toolbox"
@@ -9,7 +9,8 @@ Vagrant.configure("2") do |config|
   config.vm.box_check_update = true
   config.vm.post_up_message = "All set to run \"vagrant ssh\" to connect."  
   config.ssh.connect_timeout = 60
- 
+  config.vm.network "forwarded_port", guest: 22, host: 22
+
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
     vb.gui = false
