@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
   #config.vm.box = "mclanem/m3toolbox"
   #config.vm.box_version = "0"
-  config.vm.box = ".\\toolbox_image\\output-vagrant\\m3toolbox-virtualbox-ubuntu18.04.4.v6.box" 
+  config.vm.box = ".\\toolbox_image\\output-vagrant\\m3toolbox-virtualbox-ubuntu-2004.v2.box" 
  
   config.vm.network "private_network", type: "dhcp"
   config.vm.hostname = "toolbox"
@@ -17,6 +17,7 @@ Vagrant.configure("2") do |config|
   
     # Customize the VM:
     vb.memory = "4096"
+    vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/synced", "1"] # Allow SymLinks
     vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"] # Insures SymLinks work on windows
     
     # Optimizations

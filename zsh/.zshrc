@@ -61,4 +61,4 @@ pr() {
 }
 
 source /home/vagrant/.oh-my-zsh/custom/plugins/git-prompt/zshrc.sh
-PROMPT='%{%}{%{%}%T%{%}}%{%}$(ruby_prompt_info)%{%}%~$(git_super_status) %{%} %{%}> '
+PROMPT='%{%}{%{%}%T%{%}}%{%}$(ruby_prompt_info)%{%}%~$(git_super_status) %{%} %{%}[TOOLBOX]> '

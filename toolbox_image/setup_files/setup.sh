@@ -2,9 +2,9 @@ echo "workin"
 cd /tmp
 
 KUBE_VERSION="v1.18.0"
-TERRAFORM_VERSION="1.0.4"
-# TERRAGRUNT_VERSION="v0.25.2"
-# PACKER_VERSION="1.6.0"
+TERRAFORM_VERSION="1.0.6"
+TERRAGRUNT_VERSION="v0.31.8"
+PACKER_VERSION="1.7.4"
 # CHEFDK_VERSION="2.4.17"
 HUB_VERSION="2.14.2"
 K9S_VERSION="v0.24.7"
@@ -13,7 +13,7 @@ K9S_VERSION="v0.24.7"
 sudo apt-get install -y build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip curl wget
 
 echo "### VirtualBox Guest Additions"
-sudo apt-get install -ydddddddddddd dkms linux-headers-$(uname -r)
+sudo apt-get install -y dkms linux-headers-$(uname -r)
 VBOX_VERSION=$(cat /tmp/.vbox_version)
 sudo mount -o loop /tmp/VBoxGuestAdditions_$VBOX_VERSION.iso /mnt
 sudo sh /mnt/VBoxLinuxAdditions.run
@@ -120,17 +120,17 @@ wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${T
 unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 sudo mv terraform /usr/local/bin/terraform
 
-# echo "## Terragrunt"
-# wget https://github.com/gruntwork-io/terragrunt/releases/download/${TERRAGRUNT_VERSION}/terragrunt_linux_amd64 > /dev/null 2>&1
-# sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
-# sudo chmod a+x /usr/local/bin/terragrunt
+echo "## Terragrunt"
+wget https://github.com/gruntwork-io/terragrunt/releases/download/${TERRAGRUNT_VERSION}/terragrunt_linux_amd64 > /dev/null 2>&1
+sudo mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
+sudo chmod a+x /usr/local/bin/terragrunt
 
-# echo "### Packer"
-# sudo apt-get install build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip curl wget -y
-# wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip > /dev/null 2>&1
-# unzip packer_${PACKER_VERSION}_linux_amd64.zip
-# sudo mv packer /usr/local/bin/packer
-# rm packer_${PACKER_VERSION}_linux_amd64.zip
+echo "### Packer"
+sudo apt-get install build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip curl wget -y
+wget https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip > /dev/null 2>&1
+unzip packer_${PACKER_VERSION}_linux_amd64.zip
+sudo mv packer /usr/local/bin/packer
+rm packer_${PACKER_VERSION}_linux_amd64.zip
 
 # echo "### Vault"
 # wget https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip > /dev/null 2>&1
@@ -141,11 +141,11 @@ sudo mv terraform /usr/local/bin/terraform
 echo "### Installing DIRENV"
 sudo apt-get install direnv
 
-# echo "### Rundeck"
-# cd /tmp
-# sudo apt-get install -y openjdk-8-jdk
-# wget https://download.rundeck.org/deb/rundeck_${RUNDECK_VERSION}_all.deb > /dev/null 2>&1
-# sudo dpkg -i rundeck_${RUNDECK_VERSION}_all.deb
+echo "### Rundeck"
+cd /tmp
+sudo apt-get install -y openjdk-8-jdk
+wget https://download.rundeck.org/deb/rundeck_${RUNDECK_VERSION}_all.deb > /dev/null 2>&1
+sudo dpkg -i rundeck_${RUNDECK_VERSION}_all.deb
 
 # echo "### ChefDK"
 # curl -O https://packages.chef.io/files/stable/chefdk/${CHEFDK_VERSION}/ubuntu/16.04/chefdk_${CHEFDK_VERSION}-1_amd64.deb > /dev/null 2>&1
@@ -166,4 +166,3 @@ sudo /tmp/setup_files/cleanup.sh
 echo "### Upgrade Everything"
 sudo apt-get update
 sudo apt-get upgrade -y
-# sudo apt install apt-transport-https -y

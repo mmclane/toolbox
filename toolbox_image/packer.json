@@ -1,76 +1,58 @@
 {
     "variables": {
+        "vmname": "ubuntu-2004",
+        "box_version": "v2",
         "headless": "true",
-        "iso_checksum": "A7F5C7B0CDD0E9560D78F1E47660E066353BB8A79EB78D1FC3F4EA62A07E6CBC",
-        "mirror": "http://releases.ubuntu.com",
-        "mirror_directory": "18.04.4",
-        "iso_name": "ubuntu-18.04-server-amd64.iso",
-        "version": "1",
+        "iso_checksum": "f8e3086f3cea0fb3fefb29937ab5ed9d19e767079633960ccb50e76153effc98",
+        "iso_url": "http://releases.ubuntu.com/20.04/ubuntu-20.04.3-live-server-amd64.iso",
+        "version": "0",
         "ram": "2048",
         "cpus": "2",
         "virtualbox_disk_size": "8192"
     },
     "builders": [
-        {
-            "type": "virtualbox-iso",
-            "boot_command": [
-                "<esc><wait>",
-                "<esc><wait>",
-                "<enter><wait>",
-                "/install/vmlinuz<wait>",
-                " auto<wait>",
-                " console-setup/ask_detect=false<wait>",
-                " console-setup/layoutcode=us<wait>",
-                " console-setup/modelcode=pc105<wait>",
-                " debconf/frontend=noninteractive<wait>",
-                " debian-installer=en_US<wait>",
-                " fb=false<wait>",
-                " initrd=/install/initrd.gz<wait>",
-                " kbd-chooser/method=us<wait>",
-                " keyboard-configuration/layout=USA<wait>",
-                " keyboard-configuration/variant=USA<wait>",
-                " locale=en_US<wait>",
-                " netcfg/get_domain=vm<wait>",
-                " netcfg/get_hostname=vagrant<wait>",
-                " grub-installer/bootdev=/dev/sda<wait>",
-                " noapic<wait>",
-                " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<wait>",
-                " -- <wait>",
-                "<enter><wait>"
-            ],
-            "boot_wait": "5s",
-            "disk_size": "{{user `virtualbox_disk_size`}}",
-            "guest_os_type": "Ubuntu_64",
-            "headless": "{{user `headless`}}",
-            "http_directory": "./setup_files",
-            "iso_urls": [
-                "iso/{{user `iso_name`}}",
-                "{{user `mirror`}}/releases/{{user `mirror_directory`}}/{{user `iso_name`}}"
-            ],
-            "iso_checksum": "{{ user `iso_checksum` }}",
-            "ssh_username": "vagrant",
-            "ssh_password": "vagrant",
-            "ssh_port": 22,
-            "ssh_wait_timeout": "10000s",
-            "shutdown_command": "sudo systemctl poweroff",
-            "guest_additions_path": "/tmp/VBoxGuestAdditions_{{.Version}}.iso",
-            "virtualbox_version_file": "/tmp/.vbox_version",
-            "vm_name": "packer-ubuntu-{{user `mirror_directory`}}-amd64",
-            "vboxmanage": [
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--memory",
-                    "{{user `ram`}}"
-                ],
-                [
-                    "modifyvm",
-                    "{{.Name}}",
-                    "--cpus",
-                    "{{user `cpus`}}"
-                ]
-            ]
-        }
+      {
+        "type": "virtualbox-iso",
+        "vboxmanage": [
+          [ "modifyvm", "{{.Name}}", "--memory", "{{ user `ram` }}" ],
+          [ "modifyvm", "{{.Name}}", "--vram", "36" ],
+          [ "modifyvm", "{{.Name}}", "--cpus", "{{ user `cpus` }}" ]
+        ],
+        "guest_os_type": "Ubuntu_64",
+        "disk_size": "{{ user `virtualbox_disk_size` }}",
+        "headless": "{{ user `headless` }}",
+        "iso_url": "{{ user `iso_url` }}",
+        "iso_checksum": "{{ user `iso_checksum` }}",
+        "vm_name": "{{ user `vmname` }}",
+        "boot_command": [
+          " <wait><enter><wait>",
+          "<f6><esc>",
+          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "<bs><bs><bs>",
+          "/casper/vmlinuz ",
+          "initrd=/casper/initrd ",
+          "autoinstall ",
+          "ds=nocloud-net;s=http://{{.HTTPIP}}:{{.HTTPPort}}/ ",
+          "<enter>"
+        ],
+        "boot_wait": "5s",
+        "http_directory": "http",
+        "shutdown_command": "sudo systemctl poweroff",
+        "ssh_password": "vagrant",
+        "ssh_port": 22,
+        "ssh_username": "vagrant",
+        "ssh_timeout": "10000s",
+        "ssh_handshake_attempts": "30",
+        "guest_additions_mode": "disable",
+        "format": "ova"
+      }
     ],
     "provisioners": [
         {
@@ -99,8 +81,8 @@
             {
                 "type": "vagrant",
                 "compression_level": "8",
-                "output": "output-vagrant/m3toolbox-{{.Provider}}-ubuntu{{user `mirror_directory`}}.v6.box"
+                "output": "output-vagrant/m3toolbox-{{.Provider}}-{{ user `vmname` }}.{{ user `box_version` }}.box"
             }
         ]
     ]
-}
+  }
